@@ -1,1 +1,19 @@
-<p>resource-list works!</p>
+<section class="resource-list">
+    <h1>📚 Learning Resources</h1>
+  
+    @if (isLoading()) {
+      <p class="loading">Loading resources...</p>
+    } @else if (hasError()) {
+      <p class="error">Failed to load resources. Please try again later.</p>
+    } @else {
+      <div class="resource-grid">
+        @for (resource of resources(); track resource.id) {
+          <div class="resource-card">
+            <h3>{{ resource.title }}</h3>
+            <p>{{ resource.body }}</p>
+            <a [routerLink]="['/resources', resource.id]">View Details →</a>
+          </div>
+        }
+      </div>
+    }
+  </section>

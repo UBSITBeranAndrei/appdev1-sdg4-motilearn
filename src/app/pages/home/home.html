@@ -1,2 +1,12 @@
-<h1>Welcome to MotiLearn 🎓</h1>
-<p>Your journey to quality education starts here.</p>
+<section class="hero">
+    <h1>{{ greeting() }} 🎓</h1>
+    <p>{{ goalMessage() }}</p>
+    <p>MotiLearn helps you stay motivated and on track with your education journey.</p>
+  
+    <div class="actions">
+      <button (click)="login()">Login</button>
+      <button (click)="logout()">Logout</button>
+      <a routerLink="/resources">Browse Resources</a>
+      <a routerLink="/learn">Start Learning</a>
+    </div>
+  </section>

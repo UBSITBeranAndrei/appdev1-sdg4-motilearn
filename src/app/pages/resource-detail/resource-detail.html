@@ -1,1 +1,15 @@
-<p>resource-detail works!</p>
+<section class="resource-detail">
+    <a routerLink="/resources">← Back to Resources</a>
+  
+    @if (isLoading()) {
+      <p class="loading">Loading resource...</p>
+    } @else if (hasError()) {
+      <p class="error">Failed to load resource. Please try again later.</p>
+    } @else if (resource()) {
+      <div class="detail-card">
+        <h1>{{ resource()!.title }}</h1>
+        <p>{{ resource()!.body }}</p>
+        <span class="badge">Resource #{{ resource()!.id }}</span>
+      </div>
+    }
+  </section>
