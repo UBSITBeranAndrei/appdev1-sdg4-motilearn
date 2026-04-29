@@ -1,25 +1,24 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, catchError, of } from 'rxjs';
-import { Resource } from '../models/resource';
+import { Observable, catchError, of, startWith } from 'rxjs';
+import { Post } from '../models/post.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ResourceService {
+  private http = inject(HttpClient);
   private apiUrl = 'https://jsonplaceholder.typicode.com/posts';
 
-  constructor(private http: HttpClient) {}
-
-  getResources(): Observable<Resource[]> {
-    return this.http.get<Resource[]>(this.apiUrl).pipe(
+  getPosts(): Observable<Post[]> {
+    return this.http.get<Post[]>(this.apiUrl).pipe(
       catchError(() => of([]))
     );
   }
 
-  getResourceById(id: number): Observable<Resource> {
-    return this.http.get<Resource>(`${this.apiUrl}/${id}`).pipe(
-      catchError(() => of({} as Resource))
+  getPostById(id: number): Observable<Post> {
+    return this.http.get<Post>(`${this.apiUrl}/${id}`).pipe(
+      catchError(() => of({} as Post))
     );
   }
 }

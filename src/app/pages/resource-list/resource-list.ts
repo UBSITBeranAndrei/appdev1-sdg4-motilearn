@@ -1,31 +1,26 @@
-import { Component, inject, signal, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { AsyncPipe } from '@angular/common';
+import { Observable, BehaviorSubject, switchMap, tap, startWith } from 'rxjs';
 import { ResourceService } from '../../services/resource';
-import { Resource } from '../../models/resource';
+import { Post } from '../../models/post.model';
 
 @Component({
   selector: 'app-resource-list',
-  imports: [RouterLink],
+  imports: [RouterLink, AsyncPipe],
   templateUrl: './resource-list.html',
   styleUrl: './resource-list.css'
 })
-export class ResourceList implements OnInit {
+export class ResourceList {
   private resourceService = inject(ResourceService);
 
-  resources = signal<Resource[]>([]);
-  isLoading = signal(true);
-  hasError = signal(false);
+  isLoading = true;
+  hasError = false;
 
-  ngOnInit() {
-    this.resourceService.getResources().subscribe({
-      next: (data) => {
-        this.resources.set(data.slice(0, 10));
-        this.isLoading.set(false);
-      },
-      error: () => {
-        this.hasError.set(true);
-        this.isLoading.set(false);
-      }
-    });
-  }
+  posts$: Observable<Post[]> = this.resourceService.getPosts().pipe(
+    tap({
+      next: () => { this.isLoading = false; },
+      error: () => { this.isLoading = false; this.hasError = true; }
+    })
+  );
 }
