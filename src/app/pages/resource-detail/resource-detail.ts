@@ -1,34 +1,32 @@
-import { Component, inject, signal, OnInit, Input } from '@angular/core';
-import { RouterLink } from '@angular/router';
-import { ActivatedRoute } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { RouterLink, ActivatedRoute } from '@angular/router';
+import { AsyncPipe } from '@angular/common';
+import { Observable, switchMap, tap } from 'rxjs';
 import { ResourceService } from '../../services/resource';
-import { Resource } from '../../models/resource';
+import { Post } from '../../models/post.model';
 
 @Component({
   selector: 'app-resource-detail',
-  imports: [RouterLink],
+  imports: [RouterLink, AsyncPipe],
   templateUrl: './resource-detail.html',
   styleUrl: './resource-detail.css'
 })
-export class ResourceDetail implements OnInit {
+export class ResourceDetail {
   private route = inject(ActivatedRoute);
   private resourceService = inject(ResourceService);
 
-  resource = signal<Resource | null>(null);
-  isLoading = signal(true);
-  hasError = signal(false);
+  isLoading = true;
+  hasError = false;
 
-  ngOnInit() {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.resourceService.getResourceById(id).subscribe({
-      next: (data) => {
-        this.resource.set(data);
-        this.isLoading.set(false);
-      },
-      error: () => {
-        this.hasError.set(true);
-        this.isLoading.set(false);
-      }
-    });
-  }
+  post$: Observable<Post> = this.route.paramMap.pipe(
+    switchMap(params => {
+      const id = Number(params.get('id'));
+      return this.resourceService.getPostById(id).pipe(
+        tap({
+          next: () => { this.isLoading = false; },
+          error: () => { this.isLoading = false; this.hasError = true; }
+        })
+      );
+    })
+  );
 }
