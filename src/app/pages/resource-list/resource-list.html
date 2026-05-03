@@ -1,18 +1,24 @@
 <section class="resource-list">
   <h1>📚 Learning Resources</h1>
+  <p style="color: var(--text-secondary); margin-bottom: 1rem;">Curated AppDev resources to help you grow as a developer.</p>
 
-  @if (isLoading) {
-    <p class="loading">Loading resources...</p>
-  }
+  <div class="filter-bar">
+    <button class="filter-btn active" (click)="setFilter('all', $event)">All</button>
+    <button class="filter-btn" (click)="setFilter('angular', $event)">Angular</button>
+    <button class="filter-btn" (click)="setFilter('typescript', $event)">TypeScript</button>
+    <button class="filter-btn" (click)="setFilter('git', $event)">Git & GitHub</button>
+    <button class="filter-btn" (click)="setFilter('design', $event)">Web Design</button>
+  </div>
 
-  @if (hasError) {
-    <p class="error">Failed to load resources. Please try again later.</p>
-  }
-
-  @if (posts$ | async; as posts) {
+  @if (posts().length === 0) {
+    <div class="spinner"></div>
+  } @else {
     <div class="resource-grid">
-      @for (post of posts.slice(0, 10); track post.id) {
+      @for (post of getFiltered(); track post.id) {
         <div class="resource-card">
+          <span class="resource-card-tag" [class]="getTagClass(post.userId)">
+            {{ getCategory(post.userId) }}
+          </span>
           <h3>{{ post.title }}</h3>
           <p>{{ post.body }}</p>
           <a [routerLink]="['/resources', post.id]">View Details →</a>

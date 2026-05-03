@@ -1,5 +1,87 @@
 <section class="about">
-    <h1>About MotiLearn 💡</h1>
-    <p>MotiLearn is built in support of UN SDG 4 — Quality Education.</p>
-    <p>Our mission is to make learning accessible, motivating, and goal-driven for every learner.</p>
-  </section>
+  <div class="about-hero">
+    <div class="hero-badge">🌍 UN Sustainable Development Goal 4</div>
+    <h1>About MotiLearn</h1>
+    <p>A platform built to make quality education accessible, motivating, and goal-driven for every learner.</p>
+  </div>
+
+  <div class="about-grid">
+    <div class="about-card">
+      <div class="about-card-icon">🎯</div>
+      <h3>Our Mission</h3>
+      <p>MotiLearn is aligned with SDG 4 — Quality Education. We believe every student deserves access to curated, reliable, and motivating learning resources to help them grow as developers.</p>
+    </div>
+    <div class="about-card">
+      <div class="about-card-icon">💡</div>
+      <h3>What We Offer</h3>
+      <p>From Angular and TypeScript to Git workflows and Web Design — MotiLearn provides structured learning paths and curated resources to guide you through your AppDev journey.</p>
+    </div>
+    <div class="about-card">
+      <div class="about-card-icon">🚀</div>
+      <h3>Our Vision</h3>
+      <p>We envision a world where every learner has the tools and motivation to achieve their educational goals, regardless of their background or access to traditional resources.</p>
+    </div>
+    <div class="about-card">
+      <div class="about-card-icon">🌱</div>
+      <h3>SDG 4 Commitment</h3>
+      <p>UN SDG 4 aims to ensure inclusive and equitable quality education for all. MotiLearn contributes by making AppDev learning resources free, organized, and easy to navigate.</p>
+    </div>
+  </div>
+
+  <div class="about-team">
+    <h2>👨‍💻 Meet the Developer</h2>
+    <div class="team-card">
+      @if (photoUrl) {
+        <img class="team-photo" [src]="photoUrl" alt="Andrei Louie Beran" />
+      } @else {
+        <div class="team-avatar">A</div>
+      }
+      <div class="team-info">
+        <h3>Beran, Andrei Louie</h3>
+        <p>Student Developer — University of Baguio</p>
+        <p>IT / Computer Science Program</p>
+        <div class="team-tags">
+          <span class="resource-card-tag tag-angular">Angular</span>
+          <span class="resource-card-tag tag-typescript">TypeScript</span>
+          <span class="resource-card-tag tag-git">Git & GitHub</span>
+          <span class="resource-card-tag tag-design">Web Design</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="about-tech">
+    <h2>🛠️ Tech Stack</h2>
+    <div class="tech-grid">
+      <div class="tech-item">
+        <span class="tech-icon">⚡</span>
+        <span>Angular v21</span>
+      </div>
+      <div class="tech-item">
+        <span class="tech-icon">📘</span>
+        <span>TypeScript</span>
+      </div>
+      <div class="tech-item">
+        <span class="tech-icon">🔧</span>
+        <span>Git & GitHub</span>
+      </div>
+      <div class="tech-item">
+        <span class="tech-icon">🎨</span>
+        <span>CSS3</span>
+      </div>
+      <div class="tech-item">
+        <span class="tech-icon">🌐</span>
+        <span>REST API</span>
+      </div>
+      <div class="tech-item">
+        <span class="tech-icon">📱</span>
+        <span>Responsive Design</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="about-cta">
+    <a routerLink="/resources" class="btn-primary">Browse Resources →</a>
+    <a routerLink="/learn" class="btn-secondary">View Learning Path</a>
+  </div>
+</section>

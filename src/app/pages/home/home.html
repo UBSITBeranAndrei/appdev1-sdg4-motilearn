@@ -1,12 +1,27 @@
 <section class="hero">
-    <h1>{{ greeting() }} 🎓</h1>
-    <p>{{ goalMessage() }}</p>
-    <p>MotiLearn helps you stay motivated and on track with your education journey.</p>
-  
-    <div class="actions">
-      <button (click)="login()">Login</button>
-      <button (click)="logout()">Logout</button>
-      <a routerLink="/resources">Browse Resources</a>
-      <a routerLink="/learn">Start Learning</a>
+  <div class="hero-badge">🌍 UN SDG 4 — Quality Education</div>
+  <h1>Learn Smarter,<br><span>Build Better.</span></h1>
+  <p>{{ greeting() }} MotiLearn gives you the tools, resources, and motivation to grow as a developer.</p>
+  <p>{{ goalMessage() }}</p>
+
+  <div class="actions">
+    <a routerLink="/resources" class="btn-primary">Browse Resources →</a>
+    <a routerLink="/learn" class="btn-secondary">Learn More</a>
+    <a routerLink="/login" class="btn-secondary">Login</a>
+  </div>
+
+  <div class="stats">
+    <div class="stat-item">
+      <div class="stat-number">40+</div>
+      <div class="stat-label">Learning Resources</div>
     </div>
-  </section>
+    <div class="stat-item">
+      <div class="stat-number">4</div>
+      <div class="stat-label">Topic Categories</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">100%</div>
+      <div class="stat-label">Free to Access</div>
+    </div>
+  </div>
+</section>

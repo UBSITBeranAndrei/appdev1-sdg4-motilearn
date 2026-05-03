@@ -1,0 +1,13 @@
+@if (isVisible()) {
+  <div class="popup-overlay" (click)="close()">
+    <div class="popup-card" (click)="$event.stopPropagation()">
+      <div class="popup-icon">💡</div>
+      <p class="popup-label">Daily Motivation</p>
+      <blockquote class="popup-quote">
+        "{{ quote().quote }}"
+      </blockquote>
+      <p class="popup-author">— {{ quote().author }}</p>
+      <button class="popup-btn" (click)="close()">Let's Start Learning →</button>
+    </div>
+  </div>
+}

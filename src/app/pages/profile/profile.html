@@ -1,0 +1,49 @@
+<section class="profile-page">
+  <div class="profile-header">
+    <div class="profile-avatar">{{ username().charAt(0).toUpperCase() }}</div>
+    <div class="profile-info">
+      <h1>{{ username() }}</h1>
+      <p>Member since {{ memberSince() }}</p>
+      <span class="resource-card-tag" [class]="getCategoryClass()">
+        {{ favoriteCategory() }} Enthusiast
+      </span>
+    </div>
+  </div>
+
+  <div class="profile-grid">
+    <div class="profile-card">
+      <div class="profile-card-icon">📚</div>
+      <div class="profile-card-value">{{ resourcesViewed() }}</div>
+      <div class="profile-card-label">Resources Viewed</div>
+    </div>
+    <div class="profile-card">
+      <div class="profile-card-icon">🎯</div>
+      <div class="profile-card-value">{{ weeklyProgress() }}/{{ weeklyGoal() }}</div>
+      <div class="profile-card-label">Weekly Goal</div>
+    </div>
+    <div class="profile-card">
+      <div class="profile-card-icon">🏆</div>
+      <div class="profile-card-value">Level 1</div>
+      <div class="profile-card-label">Learner Rank</div>
+    </div>
+    <div class="profile-card">
+      <div class="profile-card-icon">⭐</div>
+      <div class="profile-card-value">{{ favoriteCategory() }}</div>
+      <div class="profile-card-label">Top Category</div>
+    </div>
+  </div>
+
+  <div class="progress-section">
+    <h2>Weekly Learning Goal</h2>
+    <p>{{ weeklyProgress() }} of {{ weeklyGoal() }} resources completed this week</p>
+    <div class="progress-bar">
+      <div class="progress-fill" [style.width.%]="getProgressPercent()"></div>
+    </div>
+    <span class="progress-label">{{ getProgressPercent() }}% Complete</span>
+  </div>
+
+  <div class="profile-actions">
+    <a routerLink="/resources" class="btn-primary">Browse Resources →</a>
+    <a routerLink="/learn" class="btn-secondary">View Learning Path</a>
+  </div>
+</section>

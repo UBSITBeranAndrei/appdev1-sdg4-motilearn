@@ -1,19 +1,16 @@
 <section class="resource-detail">
   <a routerLink="/resources">← Back to Resources</a>
 
-  @if (isLoading) {
-    <p class="loading">Loading resource...</p>
-  }
-
-  @if (hasError) {
-    <p class="error">Failed to load resource. Please try again later.</p>
-  }
-
-  @if (post$ | async; as post) {
+  @if (post()) {
     <div class="detail-card">
-      <h1>{{ post.title }}</h1>
-      <p>{{ post.body }}</p>
-      <span class="badge">Resource #{{ post.id }}</span>
+      <span class="resource-card-tag" [class]="getTagClass(post()!.userId)">
+        {{ getCategory(post()!.userId) }}
+      </span>
+      <h1>{{ post()!.title }}</h1>
+      <p>{{ post()!.body }}</p>
+      <span class="badge">Resource #{{ post()!.id }}</span>
     </div>
+  } @else {
+    <div class="spinner"></div>
   }
 </section>

@@ -1,3 +1,7 @@
+@if (showPopup()) {
+  <app-motivational-popup (closed)="onPopupClosed()" />
+}
+
 <nav class="navbar">
   <div class="nav-brand">
     <a routerLink="/">🎓 MotiLearn</a>
@@ -5,8 +9,14 @@
   <div class="nav-links">
     <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
     <a routerLink="/learn" routerLinkActive="active">Learn</a>
-    <a routerLink="/resources" routerLinkActive="active">Resources</a>
+    <a routerLink="/resources" routerLinkActive="active" (click)="checkAuth()">Resources</a>
     <a routerLink="/about" routerLinkActive="active">About</a>
+    @if (isLoggedIn()) {
+      <a routerLink="/profile" routerLinkActive="active" class="btn-secondary" style="padding: 0.4rem 1rem; font-size: 0.9rem;">Profile</a>
+      <button class="btn-secondary" style="padding: 0.4rem 1rem; font-size: 0.9rem;" (click)="logout()">Logout</button>
+    } @else {
+      <a routerLink="/login" routerLinkActive="active" class="btn-primary" style="padding: 0.4rem 1rem; font-size: 0.9rem;">Login</a>
+    }
   </div>
 </nav>
 

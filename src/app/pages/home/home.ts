@@ -9,16 +9,8 @@ import { RouterLink } from '@angular/router';
 })
 export class Home {
   userName = signal('Learner');
-  goalCount = signal(3);
+  goalCount = signal(4);
 
-  greeting = computed(() => `Welcome, ${this.userName()}!`);
+  greeting = computed(() => `Welcome back, ${this.userName()}!`);
   goalMessage = computed(() => `You have ${this.goalCount()} learning goals this week.`);
-
-  login() {
-    localStorage.setItem('motilearn_user', 'true');
-  }
-
-  logout() {
-    localStorage.removeItem('motilearn_user');
-  }
 }

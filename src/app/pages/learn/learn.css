@@ -1,0 +1,195 @@
+.learn {
+  animation: fadeInUp 0.6s ease both;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.learn h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.learn > p {
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+}
+
+.roadmap {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.roadmap-step {
+  display: flex;
+  gap: 1.5rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.5rem;
+  transition: all 0.3s;
+}
+
+.roadmap-step.completed {
+  border-color: var(--accent);
+  background: rgba(79, 142, 247, 0.05);
+}
+
+.roadmap-step:hover {
+  transform: translateX(6px);
+  box-shadow: 0 4px 20px var(--accent-glow);
+}
+
+.roadmap-icon {
+  font-size: 2.5rem;
+  flex-shrink: 0;
+}
+
+.roadmap-content {
+  flex: 1;
+}
+
+.roadmap-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.roadmap-number {
+  font-size: 0.8rem;
+  color: var(--accent);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.roadmap-done {
+  font-size: 0.8rem;
+  color: var(--success);
+  font-weight: 600;
+}
+
+.roadmap-pending {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.roadmap-content h3 {
+  color: var(--text-primary);
+  font-size: 1.1rem;
+  margin-bottom: 0.3rem;
+}
+
+.roadmap-content p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-bottom: 0.75rem;
+}
+
+.roadmap-topics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.topic-tag {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  padding: 0.2rem 0.6rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+}
+
+.bookmarks-section {
+  margin-bottom: 2rem;
+}
+
+.bookmarks-section h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+}
+
+.empty-bookmarks {
+  background: var(--bg-card);
+  border: 1px dashed var(--border);
+  border-radius: 16px;
+  padding: 2rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.empty-bookmarks p {
+  color: var(--text-secondary);
+}
+
+.bookmark-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.bookmark-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  transition: all 0.2s;
+  gap: 1rem;
+}
+
+.bookmark-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.bookmark-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.bookmark-info h4 {
+  color: var(--text-primary);
+  font-size: 0.95rem;
+}
+
+.bookmark-info p {
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+}
+
+.bookmark-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.learn-cta {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+@media (max-width: 768px) {
+  .roadmap-step {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .bookmark-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

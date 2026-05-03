@@ -1,5 +1,62 @@
 <section class="learn">
-    <h1>Learn 📖</h1>
-    <p>Explore our curated learning paths designed to help you achieve your education goals.</p>
-    <a routerLink="/resources">Browse Resources →</a>
-  </section>
+  <h1>🗺️ Learning Path</h1>
+  <p>Follow this roadmap to grow from beginner to confident AppDev developer.</p>
+
+  <div class="roadmap">
+    @for (step of roadmap; track step.step) {
+      <div class="roadmap-step" [class.completed]="step.completed">
+        <div class="roadmap-icon">{{ step.icon }}</div>
+        <div class="roadmap-content">
+          <div class="roadmap-header">
+            <span class="roadmap-number">Step {{ step.step }}</span>
+            @if (step.completed) {
+              <span class="roadmap-done">✅ Completed</span>
+            } @else {
+              <span class="roadmap-pending">🔒 Upcoming</span>
+            }
+          </div>
+          <h3>{{ step.title }}</h3>
+          <p>{{ step.description }}</p>
+          <div class="roadmap-topics">
+            @for (topic of step.topics; track topic) {
+              <span class="topic-tag">{{ topic }}</span>
+            }
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+
+  <div class="bookmarks-section">
+    <h2>🔖 Recently Viewed</h2>
+    @if (bookmarks().length === 0) {
+      <div class="empty-bookmarks">
+        <p>No recently viewed resources yet.</p>
+        <a routerLink="/resources" class="btn-primary">Browse Resources →</a>
+      </div>
+    } @else {
+      <div class="bookmark-list">
+        @for (bookmark of bookmarks(); track bookmark.id) {
+          <div class="bookmark-card">
+            <div class="bookmark-info">
+              <span class="resource-card-tag" [class]="getTagClass(bookmark.category)">
+                {{ bookmark.category }}
+              </span>
+              <h4>{{ bookmark.title }}</h4>
+              <p>Viewed {{ bookmark.viewedAt }}</p>
+            </div>
+            <div class="bookmark-actions">
+              <a [routerLink]="['/resources', bookmark.id]" class="btn-primary" style="padding: 0.4rem 1rem; font-size: 0.85rem;">View →</a>
+              <button (click)="removeBookmark(bookmark.id)" class="btn-secondary" style="padding: 0.4rem 1rem; font-size: 0.85rem;">Remove</button>
+            </div>
+          </div>
+        }
+      </div>
+    }
+  </div>
+
+  <div class="learn-cta">
+    <a routerLink="/resources" class="btn-primary">Browse All Resources →</a>
+    <a routerLink="/profile" class="btn-secondary">View My Profile</a>
+  </div>
+</section>
