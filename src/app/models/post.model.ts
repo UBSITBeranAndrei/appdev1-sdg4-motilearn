@@ -3,4 +3,7 @@ export interface Post {
   title: string;
   body: string;
   userId: number;
+  url: string;
+  topics: string[];
+  level: string;
 }
