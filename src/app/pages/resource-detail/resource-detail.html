@@ -3,11 +3,29 @@
 
   @if (post()) {
     <div class="detail-card">
-      <span class="resource-card-tag" [class]="getTagClass(post()!.userId)">
-        {{ getCategory(post()!.userId) }}
-      </span>
+      <div class="detail-header">
+        <span class="resource-card-tag" [class]="getTagClass(post()!.userId)">
+          {{ getCategory(post()!.userId) }}
+        </span>
+        <span class="detail-level">{{ post()!.level }}</span>
+      </div>
+
       <h1>{{ post()!.title }}</h1>
       <p>{{ post()!.body }}</p>
+
+      <div class="detail-topics">
+        <h3>📌 Key Topics</h3>
+        <div class="topics-grid">
+          @for (topic of post()!.topics; track topic) {
+            <span class="topic-tag">{{ topic }}</span>
+          }
+        </div>
+      </div>
+
+      <a [href]="post()!.url" target="_blank" class="detail-link">
+        🌐 Open Resource →
+      </a>
+
       <span class="badge">Resource #{{ post()!.id }}</span>
     </div>
   } @else {
