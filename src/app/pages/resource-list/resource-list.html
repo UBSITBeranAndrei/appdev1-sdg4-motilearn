@@ -2,6 +2,20 @@
   <h1>📚 Learning Resources</h1>
   <p style="color: var(--text-secondary); margin-bottom: 1rem;">Curated AppDev resources to help you grow as a developer.</p>
 
+  <div class="search-bar">
+    <span class="search-icon">🔍</span>
+    <input
+      type="text"
+      placeholder="Search resources..."
+      [value]="searchQuery()"
+      (input)="onSearch($any($event.target).value)"
+      class="search-input"
+    />
+    @if (searchQuery()) {
+      <button class="search-clear" (click)="onSearch('')">✕</button>
+    }
+  </div>
+
   <div class="filter-bar">
     <button class="filter-btn active" (click)="setFilter('all', $event)">All</button>
     <button class="filter-btn" (click)="setFilter('angular', $event)">Angular</button>
@@ -12,7 +26,13 @@
 
   @if (posts().length === 0) {
     <div class="spinner"></div>
+  } @else if (getFiltered().length === 0) {
+    <div class="no-results">
+      <p>😕 No resources found for "<strong>{{ searchQuery() }}</strong>"</p>
+      <button class="filter-btn" (click)="onSearch('')">Clear Search</button>
+    </div>
   } @else {
+    <p class="results-count">Showing {{ getFiltered().length }} resource(s)</p>
     <div class="resource-grid">
       @for (post of getFiltered(); track post.id) {
         <div class="resource-card">

@@ -1,11 +1,12 @@
 import { Component, inject, signal, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 import { ResourceService } from '../../services/resource';
 import { Post } from '../../models/post.model';
 
 @Component({
   selector: 'app-resource-list',
-  imports: [RouterLink],
+  imports: [RouterLink, FormsModule],
   templateUrl: './resource-list.html',
   styleUrl: './resource-list.css'
 })
@@ -14,6 +15,7 @@ export class ResourceList implements OnInit {
 
   posts = signal<Post[]>([]);
   activeFilter = signal('all');
+  searchQuery = signal('');
 
   ngOnInit() {
     this.resourceService.getPosts().subscribe(data => {
@@ -27,11 +29,26 @@ export class ResourceList implements OnInit {
     (event.target as HTMLElement).classList.add('active');
   }
 
+  onSearch(value: string) {
+    this.searchQuery.set(value);
+  }
+
   getFiltered(): Post[] {
     const f = this.activeFilter();
-    if (f === 'all') return this.posts();
+    const q = this.searchQuery().toLowerCase().trim();
     const map: Record<string, number> = { angular: 1, typescript: 2, git: 3, design: 4 };
-    return this.posts().filter(p => p.userId === map[f]);
+
+    let filtered = this.posts();
+    if (f !== 'all') {
+      filtered = filtered.filter(p => p.userId === map[f]);
+    }
+    if (q) {
+      filtered = filtered.filter(p =>
+        p.title.toLowerCase().includes(q) ||
+        p.body.toLowerCase().includes(q)
+      );
+    }
+    return filtered;
   }
 
   getCategory(userId: number): string {

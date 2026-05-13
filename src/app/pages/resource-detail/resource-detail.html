@@ -2,6 +2,13 @@
   <a routerLink="/resources">← Back to Resources</a>
 
   @if (post()) {
+
+    <div class="resource-quote-card">
+      <span class="resource-quote-icon">💡</span>
+      <blockquote>"{{ quote().quote }}"</blockquote>
+      <p>— {{ quote().author }}</p>
+    </div>
+
     <div class="detail-card">
       <div class="detail-header">
         <span class="resource-card-tag" [class]="getTagClass(post()!.userId)">
@@ -28,6 +35,7 @@
 
       <span class="badge">Resource #{{ post()!.id }}</span>
     </div>
+
   } @else {
     <div class="spinner"></div>
   }
